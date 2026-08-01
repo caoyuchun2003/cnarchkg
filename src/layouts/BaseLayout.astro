@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} - 数据知识</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body class="font-sans text-gray-900 bg-white">
+    <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+      <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+          <span class="text-lg font-bold tracking-wide">数据知识</span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
+          <a href="/about" class="hover:text-blue-600 transition-colors">课题简介</a>
+          <a href="/team" class="hover:text-blue-600 transition-colors">课题组成员</a>
+          <a href="/cases" class="hover:text-blue-600 transition-colors">转译案例</a>
+          <a href="/kg" class="hover:text-blue-600 transition-colors">知识图谱</a>
+          <a href="/prototypes" class="hover:text-blue-600 transition-colors">传统原型</a>
+          <a href="/results" class="hover:text-blue-600 transition-colors">现有成果</a>
+          <a href="/contact" class="hover:text-blue-600 transition-colors">联系我们</a>
+        </div>
+        <button class="lg:hidden" id="menuBtn" aria-label="菜单">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </header>
+    <main class="min-h-screen pt-16">
+      <slot />
+    </main>
+    <footer class="border-t border-gray-100 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-6 text-center text-sm text-gray-400">
+        <p>国家自然科学基金重点项目（52038007）</p>
+        <p class="mt-1">天津大学建筑学院 · 11建筑工作室</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const props = { title: '传统原型' };
+const prototypes = [
+  ['/image/ctyx_1.jpg','Renaissance Portrait'],
+  ['/image/ctyx_2.jpg','Classical Battle Scene'],
+  ['/image/ctyx_6.jpg','Renaissance Portrait 2'],
+  ['/image/ctyx_3.jpg','Classical Woman Portrait'],
+  ['/image/ctyx_4.jpg','Classical Landscape'],
+  ['/image/ctyx_5.jpg','Classical Portrait'],
+  ['/image/ctyx_7.jpg','Classical Interior'],
+  ['/image/ctyx_8.jpg','Renaissance Portrait 3'],
+  ['/image/ctyx_9.jpg','Renaissance Portrait 4'],
+];
+---
+<BaseLayout {...props}>
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-12 text-center">传统原型</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {prototypes.map(([src, alt]) => (
+        <div class="border rounded-xl overflow-hidden">
+          <img src={src} alt={alt} class="w-full object-cover" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
+  body { -webkit-font-smoothing: antialiased; }
+}
+
+@layer components {
+  .article { @apply max-w-3xl mx-auto px-6; }
+  .article h1 { @apply text-3xl font-bold mb-8 mt-12; }
+  .article h2 { @apply text-xl font-bold mt-10 mb-4; }
+  .article p { @apply leading-relaxed mb-4 text-gray-700; }
+  .article img { @apply rounded-lg my-6 w-full; }
+}

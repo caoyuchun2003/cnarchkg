@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const props = { title: '现有成果' };
+
+const books = [
+  '词语与建筑物：现代建筑的语汇',
+  '从衣集：历史空间与空间历史中的中国古代城市',
+  'Routledge Handbook of Chinese Architecture',
+  '丛华集：多维视角与多重价值中的中国遗产保护',
+  '建筑类型学（第三版）',
+  '河湟地区传统建筑研究',
+  '转译与重构',
+];
+
+const exhibitions = [
+  '第18届威尼斯国际建筑双年展参展',
+  '第17届威尼斯国际建筑双年展参展',
+  '2022年第九届深港城市建筑双城双年展',
+  '2021年北京国际设计周参展',
+];
+
+const practices = [
+  '梦回榆林-榆林梅花楼片区集群设计',
+  '昆山拉谷谷文化中心',
+  '乐之庭 四川凯州新城建筑集群设计14号地块',
+];
+---
+<BaseLayout {...props}>
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-12 text-center">现有成果</h1>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">📚 专著</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {books.map(b => <div class="border rounded-xl p-4 text-center text-sm font-medium">{b}</div>)}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">📄 论文</h2>
+      <p class="text-gray-500 mb-4">已发表核心期刊论文100余篇。</p>
+      <a href="/papers" class="text-blue-600 hover:underline text-sm">查看完整论文列表 →</a>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">🎯 展览</h2>
+      <div class="space-y-3">
+        {exhibitions.map(e => <div class="border rounded-lg p-4 text-sm">{e}</div>)}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">🏗 实践项目</h2>
+      <div class="space-y-3">
+        {practices.map(p => <div class="border rounded-lg p-4 text-sm">{p}</div>)}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">💡 专利</h2>
+      <div class="border rounded-xl p-6 space-y-3 text-sm text-gray-600">
+        <p><strong>发明专利：</strong>一种生成合院式建筑单体形态的三维建模方法及系统 (2024101067479)</p>
+        <p><strong>实用新型：</strong>一种建筑动态表皮用光伏组件联动装置 (CN201922348968.4)</p>
+        <p><strong>外观专利：</strong>盲道用引导标识 (2023303851424)</p>
+        <p><strong>外观专利：</strong>光伏窗 (CN201930724397.2)</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
