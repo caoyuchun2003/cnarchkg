@@ -1,16 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '传统原型' };
+const base = import.meta.env.BASE_URL;
 const prototypes = [
-  ['/image/ctyx_1.jpg','Renaissance Portrait'],
-  ['/image/ctyx_2.jpg','Classical Battle Scene'],
-  ['/image/ctyx_6.jpg','Renaissance Portrait 2'],
-  ['/image/ctyx_3.jpg','Classical Woman Portrait'],
-  ['/image/ctyx_4.jpg','Classical Landscape'],
-  ['/image/ctyx_5.jpg','Classical Portrait'],
-  ['/image/ctyx_7.jpg','Classical Interior'],
-  ['/image/ctyx_8.jpg','Renaissance Portrait 3'],
-  ['/image/ctyx_9.jpg','Renaissance Portrait 4'],
+  [`${base}image/ctyx_1.jpg`,'Renaissance Portrait'],
+  [`${base}image/ctyx_2.jpg`,'Classical Battle Scene'],
+  [`${base}image/ctyx_6.jpg`,'Renaissance Portrait 2'],
+  [`${base}image/ctyx_3.jpg`,'Classical Woman Portrait'],
+  [`${base}image/ctyx_4.jpg`,'Classical Landscape'],
+  [`${base}image/ctyx_5.jpg`,'Classical Portrait'],
+  [`${base}image/ctyx_7.jpg`,'Classical Interior'],
+  [`${base}image/ctyx_8.jpg`,'Renaissance Portrait 3'],
+  [`${base}image/ctyx_9.jpg`,'Renaissance Portrait 4'],
 ];
 ---
 <BaseLayout {...props}>

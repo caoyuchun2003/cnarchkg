@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '课题组成员' };
+const base = import.meta.env.BASE_URL;
 const members = [
-  { name: '孔宇航', title: '讲席教授', avatar: '/image/001@2x.png' },
-  { name: '王其亨', title: '教授', avatar: '/image/Bitmap@2x(3).png' },
-  { name: '李华', title: '教授', avatar: '/image/Bitmap@2x(5).png' },
-  { name: '汪丽君', title: '教授', avatar: '/image/Bitmap@2x(7).png' },
-  { name: '张春彦', title: '教授', avatar: '/image/Bitmap@2x(11).png' },
-  { name: '张凤梧', title: '教授', avatar: '/image/Bitmap@2x(15).png' },
-  { name: '杨菁', title: '副教授', avatar: '/image/Bitmap@2x(9).png' },
-  { name: '沈旸', title: '教授', avatar: '/image/Bitmap@2x(13).png' },
-  { name: '胡一可', title: '教授', avatar: '/image/Bitmap@2x(17).png' },
-  { name: '辛善超', title: '副教授', avatar: '/image/Bitmap@2x(1).png' },
+  { name: '孔宇航', title: '讲席教授', avatar: `${base}image/001@2x.png` },
+  { name: '王其亨', title: '教授', avatar: `${base}image/Bitmap@2x(3).png` },
+  { name: '李华', title: '教授', avatar: `${base}image/Bitmap@2x(5).png` },
+  { name: '汪丽君', title: '教授', avatar: `${base}image/Bitmap@2x(7).png` },
+  { name: '张春彦', title: '教授', avatar: `${base}image/Bitmap@2x(11).png` },
+  { name: '张凤梧', title: '教授', avatar: `${base}image/Bitmap@2x(15).png` },
+  { name: '杨菁', title: '副教授', avatar: `${base}image/Bitmap@2x(9).png` },
+  { name: '沈旸', title: '教授', avatar: `${base}image/Bitmap@2x(13).png` },
+  { name: '胡一可', title: '教授', avatar: `${base}image/Bitmap@2x(17).png` },
+  { name: '辛善超', title: '副教授', avatar: `${base}image/Bitmap@2x(1).png` },
 ];
 ---
 <BaseLayout {...props}>
