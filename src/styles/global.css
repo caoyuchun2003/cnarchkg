@@ -2,15 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+
 @layer base {
   * { font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
-  body { -webkit-font-smoothing: antialiased; }
+  body { -webkit-font-smoothing: antialiased; color: #1a1a2e; background: #fafafb; }
+  h1, h2, h3, .serif { font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif; }
 }
 
 @layer components {
-  .article { @apply max-w-3xl mx-auto px-6; }
-  .article h1 { @apply text-3xl font-bold mb-8 mt-12; }
-  .article h2 { @apply text-xl font-bold mt-10 mb-4; }
-  .article p { @apply leading-relaxed mb-4 text-gray-700; }
-  .article img { @apply rounded-lg my-6 w-full; }
+  .container-page { @apply max-w-7xl mx-auto px-6; }
+  
+  .hero-title {
+    @apply text-4xl md:text-6xl font-black tracking-tight;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-black mb-12 text-center tracking-tight;
+    color: #1a1a2e;
+  }
+  
+  .card {
+    @apply bg-white border border-gray-100 rounded-2xl overflow-hidden;
+    @apply shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(15,52,96,0.08)];
+    @apply transition-all duration-300;
+  }
+  
+  .card:hover { @apply -translate-y-1; }
+  
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl;
+    @apply bg-[#0f3460] text-white font-medium text-sm;
+    @apply hover:bg-[#16213e] transition-colors;
+  }
+  
+  .tag {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-medium;
+    @apply bg-blue-50 text-blue-700;
+  }
+  
+  .article { @apply max-w-3xl mx-auto px-6 py-16; }
+  .article h1 { @apply text-3xl font-black mb-4; font-family: 'Noto Serif SC', serif; }
+  .article p { @apply text-lg leading-relaxed text-gray-600 mb-6; }
+  
+  .hero-section {
+    @apply relative overflow-hidden;
+    background: linear-gradient(160deg, #f0f4ff 0%, #fafafb 40%, #f0f4ff 100%);
+  }
+  
+  .hero-section::before {
+    content: '';
+    @apply absolute top-0 right-0 w-96 h-96 rounded-full;
+    background: radial-gradient(circle, rgba(15,52,96,0.04) 0%, transparent 70%);
+  }
 }

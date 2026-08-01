@@ -2,6 +2,15 @@
 import '../styles/global.css';
 const { title } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const nav = [
+  ['课题简介', 'about'],
+  ['课题组成员', 'team'],
+  ['转译案例', 'cases'],
+  ['知识图谱', 'kg'],
+  ['传统原型', 'prototypes'],
+  ['现有成果', 'results'],
+  ['联系我们', 'contact'],
+];
 ---
 
 <!doctype html>
@@ -12,33 +21,54 @@ const base = import.meta.env.BASE_URL;
     <title>{title} - 数据知识</title>
     <link rel="icon" type="image/png" href={`${base}favicon.png`} />
   </head>
-  <body class="font-sans text-gray-900 bg-white">
-    <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
-      <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href={base} class="flex items-center gap-3">
-          <span class="text-lg font-bold tracking-wide">数据知识</span>
+  <body class="text-[#1a1a2e] bg-[#fafafb]">
+    <!-- Top bar -->
+    <div class="bg-[#0f3460] text-white/80 text-xs text-center py-2">
+      国家自然科学基金重点项目 · 基于中华语境"建筑-人-环境"融贯机制的当代营建体系重构研究 (52038007)
+    </div>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href={base} class="flex items-center gap-3 group">
+          <div class="w-8 h-8 bg-[#0f3460] rounded-lg flex items-center justify-center text-white text-sm font-black group-hover:bg-[#16213e] transition-colors">建</div>
+          <div>
+            <div class="text-sm font-bold tracking-wide leading-tight">数据知识</div>
+            <div class="text-[10px] text-gray-400 leading-tight">Arch-KG Lab · TJU</div>
+          </div>
         </a>
-        <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
-          <a href={`${base}about`} class="hover:text-blue-600 transition-colors">课题简介</a>
-          <a href={`${base}team`} class="hover:text-blue-600 transition-colors">课题组成员</a>
-          <a href={`${base}cases`} class="hover:text-blue-600 transition-colors">转译案例</a>
-          <a href={`${base}kg`} class="hover:text-blue-600 transition-colors">知识图谱</a>
-          <a href={`${base}prototypes`} class="hover:text-blue-600 transition-colors">传统原型</a>
-          <a href={`${base}results`} class="hover:text-blue-600 transition-colors">现有成果</a>
-          <a href={`${base}contact`} class="hover:text-blue-600 transition-colors">联系我们</a>
-        </div>
-        <button class="lg:hidden" id="menuBtn" aria-label="菜单">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <nav class="hidden lg:flex items-center gap-1">
+          {nav.map(([label, href]) => (
+            <a href={`${base}${href}`} class="px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-[#0f3460] hover:bg-blue-50 transition-colors">
+              {label}
+            </a>
+          ))}
+        </nav>
+        <button class="lg:hidden p-2 hover:bg-gray-50 rounded-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-      </nav>
+      </div>
     </header>
-    <main class="min-h-screen pt-16">
+    <!-- Main -->
+    <main class="min-h-[60vh]">
       <slot />
     </main>
-    <footer class="border-t border-gray-100 py-12 mt-20">
-      <div class="max-w-7xl mx-auto px-6 text-center text-sm text-gray-400">
-        <p>国家自然科学基金重点项目（52038007）</p>
-        <p class="mt-1">天津大学建筑学院 · 11建筑工作室</p>
+    <!-- Footer -->
+    <footer class="bg-[#1a1a2e] text-gray-400 py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <div class="text-white font-bold text-lg mb-3">数据知识</div>
+            <p class="text-sm leading-relaxed max-w-md">天津大学建筑学院 · 11建筑工作室<br/>基于中华语境"建筑-人-环境"融贯机制的当代营建体系重构研究</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            {nav.map(([label, href]) => (
+              <a href={`${base}${href}`} class="hover:text-white transition-colors">{label}</a>
+            ))}
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-6 text-xs text-center">
+          © 2025 天津大学建筑学院 · 国家自然科学基金重点项目 (52038007)
+        </div>
       </div>
     </footer>
   </body>

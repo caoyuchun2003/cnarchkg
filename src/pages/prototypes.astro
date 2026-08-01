@@ -15,11 +15,11 @@ const prototypes = [
 ];
 ---
 <BaseLayout {...props}>
-  <div class="max-w-7xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-12 text-center">传统原型</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+  <div class="container-page py-24">
+    <h1 class="section-title">传统原型</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
       {prototypes.map(([src, alt]) => (
-        <div class="border rounded-xl overflow-hidden">
+        <div class="card">
           <img src={src} alt={alt} class="w-full object-cover" loading="lazy" />
         </div>
       ))}
