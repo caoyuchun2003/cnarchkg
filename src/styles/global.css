@@ -102,4 +102,6 @@
 .reveal-active .timeline-dot::before { transform: translate(-50%,-50%) scale(1); }
 
 /* Animations */
+.reveal-active { opacity: 1 !important; transform: translateY(0) !important; }
+.reveal-active .pipe-line-active { animation: draw-line 2s ease forwards; }
 .animate-fade-up { animation: fade-in-up 0.8s ease-out both; }
