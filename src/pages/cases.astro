@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '转译案例' };
+const base = import.meta.env.BASE_URL;
 const cases = [
   { slug: 'xicun', title: '西村·贝森大院', year: '2012', location: '四川·成都', architect: '刘家琨', cover: '/uploadfile/202510/7066a36637ccba5.jpg' },
   { slug: 'jishou', title: '吉首美术馆', year: '2019', location: '湖南·吉首', architect: '张永和', cover: '/uploadfile/202508/cd1d797821bf190.jpg' },
@@ -29,7 +30,7 @@ const cases = [
     <h1 class="text-3xl font-bold mb-12 text-center">转译案例</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {cases.map(c => (
-        <a href={`/cases/${c.slug}`} class="group border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+        <a href={`${base}cases/${c.slug}`} class="group border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
           <img src={c.cover} alt={c.title} class="w-full h-48 object-cover" loading="lazy" />
           <div class="p-4">
             <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors">{c.title}</h3>
