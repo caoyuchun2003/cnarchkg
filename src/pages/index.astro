@@ -34,7 +34,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 inset-x-0 flex justify-center" style="animation: fade-in-up 0.8s ease-out 0.6s both;">
+    <div class="absolute bottom-8 inset-x-0 flex justify-center z-20" style="animation: fade-in-up 0.8s ease-out 0.6s both;">
       <div class="flex flex-col items-center gap-2 text-gray-400 text-xs">
         <div class="w-5 h-8 rounded-full border-2 border-gray-300 flex justify-center pt-1.5">
           <div class="w-1 h-2 rounded-full bg-gray-400 animate-bounce"></div>
@@ -45,7 +45,7 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <!-- Stats -->
-  <section class="relative z-10 -mt-16 mb-16">
+  <section class="relative z-10 pt-16 pb-16">
     <div class="max-w-5xl mx-auto px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
