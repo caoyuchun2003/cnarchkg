@@ -88,17 +88,14 @@
 .card-3d { transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
 
 /* Pipeline SVG */
-.pipe-line { stroke: rgba(15,52,96,0.2); stroke-width: 2; stroke-linecap: round; }
-.pipe-line-active { stroke: #0f3460; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
-.pipe-line.reveal-active .pipe-line-active { animation: draw-line 2s ease forwards; }
+.pipe-line-active { stroke: #0f3460; stroke-width: 2.5; stroke-linecap: round; }
+.reveal-active .pipe-line-active { animation: draw-line 1.5s ease forwards; }
 @keyframes draw-line { to { stroke-dashoffset: 0; } }
-.pipe-node { fill: white; stroke: rgba(15,52,96,0.3); stroke-width: 1.5; transition: all 0.5s; }
-.pipe-node-active { fill: #0f3460; stroke: #0f3460; }
 
 /* Timeline */
 .timeline-line { background: linear-gradient(180deg, #0f3460 0%, rgba(15,52,96,0) 100%); }
-.timeline-dot { background: white; border: 3px solid #0f3460; border-radius: 50%; width: 16px; height: 16px; }
-.timeline-dot::before { content: ''; position: absolute; width: 8px; height: 8px; background: #0f3460; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0); transition: transform 0.4s ease; }
+.timeline-dot { background: white; border: 3px solid #0f3460; border-radius: 50%; width: 16px; height: 16px; position: relative; }
+.timeline-dot::before { content: ''; position: absolute; width: 8px; height: 8px; background: #0f3460; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0); transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1); }
 .reveal-active .timeline-dot::before { transform: translate(-50%,-50%) scale(1); }
 
 /* Animations */

@@ -85,24 +85,31 @@ const timelineItems = [
       <h2 class="section-title">研究方法</h2>
       <div class="flex justify-center overflow-x-auto">
         <svg viewBox="0 0 800 200" class="w-full max-w-3xl">
-          <defs>
-            <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-          <!-- Lines -->
-          <line x1="80" y1="100" x2="180" y2="100" class="pipe-line"/>
-          <line x1="280" y1="100" x2="380" y2="100" class="pipe-line"/>
-          <line x1="480" y1="100" x2="580" y2="100" class="pipe-line"/>
-          <line x1="680" y1="100" x2="760" y2="100" class="pipe-line"/>
+          <!-- Static background lines -->
+          <line x1="80" y1="100" x2="180" y2="100" stroke="rgba(15,52,96,0.15)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="280" y1="100" x2="380" y2="100" stroke="rgba(15,52,96,0.15)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="480" y1="100" x2="580" y2="100" stroke="rgba(15,52,96,0.15)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="680" y1="100" x2="750" y2="100" stroke="rgba(15,52,96,0.15)" stroke-width="2" stroke-linecap="round"/>
+          <!-- Animated overlay lines -->
+          <line x1="80" y1="100" x2="180" y2="100" class="pipe-line-active" stroke="#0f3460" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150"/>
+          <line x1="280" y1="100" x2="380" y2="100" class="pipe-line-active" stroke="#0f3460" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150"/>
+          <line x1="480" y1="100" x2="580" y2="100" class="pipe-line-active" stroke="#0f3460" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150"/>
+          <line x1="680" y1="100" x2="750" y2="100" class="pipe-line-active" stroke="#0f3460" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150"/>
           <!-- Arrowheads -->
-          <polygon points="180,95 195,100 180,105" fill="rgba(15,52,96,0.2)"/>
-          <polygon points="380,95 395,100 380,105" fill="rgba(15,52,96,0.2)"/>
-          <polygon points="580,95 595,100 580,105" fill="rgba(15,52,96,0.2)"/>
+          <polygon points="175,94 195,100 175,106" fill="rgba(15,52,96,0.3)"/>
+          <polygon points="375,94 395,100 375,106" fill="rgba(15,52,96,0.3)"/>
+          <polygon points="575,94 595,100 575,106" fill="rgba(15,52,96,0.3)"/>
           <!-- Nodes -->
-          <circle cx="80" cy="100" r="28" class="pipe-node"/><text x="80" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">数据</text>
-          <circle cx="280" cy="100" r="28" class="pipe-node"/><text x="280" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">挖掘</text>
-          <circle cx="480" cy="100" r="28" class="pipe-node"/><text x="480" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">图谱</text>
-          <circle cx="680" cy="100" r="28" class="pipe-node"/><text x="680" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">转译</text>
-          <circle cx="760" cy="100" r="28" class="pipe-node"/><text x="760" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">导控</text>
+          <circle cx="80" cy="100" r="28" fill="white" stroke="rgba(15,52,96,0.3)" stroke-width="1.5"/>
+          <text x="80" y="106" text-anchor="middle" font-size="13" font-weight="800" fill="#0f3460">数据</text>
+          <circle cx="280" cy="100" r="28" fill="white" stroke="rgba(15,52,96,0.3)" stroke-width="1.5"/>
+          <text x="280" y="106" text-anchor="middle" font-size="13" font-weight="800" fill="#0f3460">挖掘</text>
+          <circle cx="480" cy="100" r="28" fill="white" stroke="rgba(15,52,96,0.3)" stroke-width="1.5"/>
+          <text x="480" y="106" text-anchor="middle" font-size="13" font-weight="800" fill="#0f3460">图谱</text>
+          <circle cx="680" cy="100" r="28" fill="white" stroke="rgba(15,52,96,0.3)" stroke-width="1.5"/>
+          <text x="680" y="106" text-anchor="middle" font-size="13" font-weight="800" fill="#0f3460">转译</text>
+          <circle cx="760" cy="100" r="28" fill="white" stroke="rgba(15,52,96,0.3)" stroke-width="1.5"/>
+          <text x="760" y="106" text-anchor="middle" font-size="13" font-weight="800" fill="#0f3460">导控</text>
         </svg>
       </div>
     </div>
