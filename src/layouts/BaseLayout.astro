@@ -23,7 +23,7 @@ const nav = [
   </head>
   <body class="text-[#1a1a2e] bg-[#fafafb]">
     <!-- Top bar -->
-    <div class="bg-[#0f3460] text-white/80 text-xs text-center py-2">
+    <div class="bg-[#0f3460] text-white/80 text-xs text-center py-2 px-4 truncate">
       国家自然科学基金重点项目 · 基于中华语境"建筑-人-环境"融贯机制的当代营建体系重构研究 (52038007)
     </div>
     <!-- Header -->
@@ -36,6 +36,7 @@ const nav = [
             <div class="text-[10px] text-gray-400 leading-tight">Arch-KG Lab · TJU</div>
           </div>
         </a>
+        <!-- Desktop nav -->
         <nav class="hidden lg:flex items-center gap-1">
           {nav.map(([label, href]) => (
             <a href={`${base}${href}`} class="px-3 py-2 rounded-lg text-sm text-gray-600 hover:text-[#0f3460] hover:bg-blue-50 transition-colors">
@@ -43,15 +44,31 @@ const nav = [
             </a>
           ))}
         </nav>
-        <button class="lg:hidden p-2 hover:bg-gray-50 rounded-lg">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <!-- Mobile hamburger -->
+        <button id="menu-toggle" class="lg:hidden p-2 hover:bg-gray-50 rounded-lg" aria-label="菜单">
+          <svg id="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
     </header>
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-lg hidden flex-col items-center justify-center gap-6">
+      <button id="menu-close" class="absolute top-6 right-6 p-2 hover:bg-gray-50 rounded-lg" aria-label="关闭">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      {nav.map(([label, href]) => (
+        <a href={`${base}${href}`} class="text-2xl font-bold text-gray-800 hover:text-[#0f3460] transition-colors mobile-link">
+          {label}
+        </a>
+      ))}
+    </div>
     <!-- Main -->
     <main class="min-h-[60vh]">
       <slot />
     </main>
+    <!-- Back to top -->
+    <button id="back-top" class="fixed bottom-8 right-8 z-30 w-12 h-12 bg-[#0f3460] text-white rounded-xl shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-[#16213e] hover:-translate-y-1" aria-label="回到顶部">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
     <!-- Footer -->
     <footer class="bg-[#1a1a2e] text-gray-400 py-16">
       <div class="max-w-7xl mx-auto px-6">
@@ -71,5 +88,25 @@ const nav = [
         </div>
       </div>
     </footer>
+    <!-- Mobile menu & back-to-top JS -->
+    <script>
+      (function(){
+        var t=document.getElementById('menu-toggle');
+        var m=document.getElementById('mobile-menu');
+        var c=document.getElementById('menu-close');
+        function open(){m.classList.replace('hidden','flex')}
+        function close(){m.classList.replace('flex','hidden')}
+        t.onclick=open;
+        c.onclick=close;
+        [].forEach.call(document.querySelectorAll('.mobile-link'),function(l){l.onclick=close});
+
+        var bt=document.getElementById('back-top');
+        window.addEventListener('scroll',function(){
+          bt.style.opacity=window.scrollY>600?'1':'0';
+          bt.style.pointerEvents=window.scrollY>600?'auto':'none';
+        });
+        bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+      })();
+    </script>
   </body>
 </html>
