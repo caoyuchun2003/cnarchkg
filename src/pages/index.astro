@@ -2,14 +2,34 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '首页' };
 const base = import.meta.env.BASE_URL;
+const featuredCases = [
+  { slug: 'xicun', title: '西村·贝森大院', location: '四川·成都', year: '2012', architect: '刘家琨', cover: `${base}uploadfile/202510/7066a36637ccba5.jpg` },
+  { slug: 'jishou', title: '吉首美术馆', location: '湖南·吉首', year: '2019', architect: '张永和', cover: `${base}uploadfile/202508/cd1d797821bf190.jpg` },
+  { slug: 'xiangshan', title: '香山饭店', location: '北京', year: '1982', architect: '贝聿铭', cover: `${base}uploadfile/202509/5be05375f87a3e6.jpg` },
+  { slug: 'hangzhou', title: '杭州国家版本馆', location: '浙江·杭州', year: '2022', architect: '王澍', cover: `${base}uploadfile/202509/086b5382a4eec13.png` },
+];
+const navCards = [
+  ['📖', '课题简介', '了解研究背景与技术路线', 'about'],
+  ['👥', '课题组成员', '核心研究团队介绍', 'team'],
+  ['🏛️', '转译案例', '20 个经典建筑案例深度解析', 'cases'],
+  ['🔗', '知识图谱', '交互式知识网络可视化', 'kg'],
+  ['🎨', '传统原型', '历史建筑原型图像档案', 'prototypes'],
+  ['📚', '现有成果', '专著·论文·专利·展览', 'results'],
+];
+const timelineItems = [
+  ['2023', '课题启动', '获批国家自然科学基金重点项目'],
+  ['2024', '数据采集', '完成传统营建知识库建设'],
+  ['2025', '图谱构建', '上线知识图谱交互平台'],
+  ['2026', '成果汇总', '专著出版、展览参展、论文发表'],
+];
 ---
 <BaseLayout {...props}>
-  <!-- Hero with animated shapes -->
+  <!-- Hero with Canvas background -->
   <section class="hero-bg min-h-[90vh] flex items-center relative">
+    <canvas id="kg-canvas"></canvas>
     <div class="floating-shape shape-1"></div>
     <div class="floating-shape shape-2"></div>
     <div class="floating-shape shape-3"></div>
-    <div class="floating-shape shape-4"></div>
     <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32 text-center">
       <div class="animate-fade-up">
         <span class="inline-block px-5 py-2 rounded-full text-sm font-semibold bg-white/80 backdrop-blur border border-gray-100 text-[#0f3460] mb-8 shadow-sm">
@@ -33,58 +53,91 @@ const base = import.meta.env.BASE_URL;
         </a>
       </div>
     </div>
-    <!-- Scroll indicator -->
     <div class="absolute bottom-8 inset-x-0 flex justify-center z-20" style="animation: fade-in-up 0.8s ease-out 0.6s both;">
       <div class="flex flex-col items-center gap-2 text-gray-400 text-xs">
-        <div class="w-5 h-8 rounded-full border-2 border-gray-300 flex justify-center pt-1.5">
-          <div class="w-1 h-2 rounded-full bg-gray-400 animate-bounce"></div>
-        </div>
+        <div class="w-5 h-8 rounded-full border-2 border-gray-300 flex justify-center pt-1.5"><div class="w-1 h-2 rounded-full bg-gray-400 animate-bounce"></div></div>
         <span>向下探索</span>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="relative z-10 pt-16 pb-16">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          ['20','经典案例','建筑转译实践'],
-          ['4','知识图谱','交互式可视化'],
-          ['100+','学术论文','核心期刊发表'],
-          ['10','团队成员','教授/副教授'],
-        ].map(([num,label,sub],i) => (
-          <div class="card p-6 text-center stat-item" style={`animation-delay:${0.7+i*0.1}s`}>
-            <div class="text-4xl md:text-5xl font-black text-[#0f3460] mb-1">{num}</div>
-            <div class="font-bold text-sm">{label}</div>
-            <div class="text-xs text-gray-400 mt-1">{sub}</div>
+  <!-- Stats with counter animation -->
+  <section class="py-16 max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 glow-border">
+      {[
+        ['20', '经典案例', '建筑转译实践'],
+        ['4', '知识图谱', '交互式可视化'],
+        ['100+', '学术论文', '核心期刊发表'],
+        ['10', '团队成员', '教授/副教授'],
+      ].map(([num,label,sub],i) => (
+        <div class="text-center px-4 py-8" style={`animation: fade-in-up 0.6s ease-out ${0.5+i*0.1}s both;`}>
+          <div class="text-4xl md:text-5xl font-black text-[#0f3460] mb-2" data-count={num.replace('+','')} data-suffix={num.includes('+')?'+':''}>{num}</div>
+          <div class="font-bold text-sm">{label}</div>
+          <div class="text-xs text-gray-400 mt-1">{sub}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Pipeline -->
+  <section class="py-24 bg-white reveal">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="section-title">研究方法</h2>
+      <div class="flex justify-center overflow-x-auto">
+        <svg viewBox="0 0 800 200" class="w-full max-w-3xl">
+          <defs>
+            <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- Lines -->
+          <line x1="80" y1="100" x2="180" y2="100" class="pipe-line"/>
+          <line x1="280" y1="100" x2="380" y2="100" class="pipe-line"/>
+          <line x1="480" y1="100" x2="580" y2="100" class="pipe-line"/>
+          <line x1="680" y1="100" x2="760" y2="100" class="pipe-line"/>
+          <!-- Arrowheads -->
+          <polygon points="180,95 195,100 180,105" fill="rgba(15,52,96,0.2)"/>
+          <polygon points="380,95 395,100 380,105" fill="rgba(15,52,96,0.2)"/>
+          <polygon points="580,95 595,100 580,105" fill="rgba(15,52,96,0.2)"/>
+          <!-- Nodes -->
+          <circle cx="80" cy="100" r="28" class="pipe-node"/><text x="80" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">数据</text>
+          <circle cx="280" cy="100" r="28" class="pipe-node"/><text x="280" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">挖掘</text>
+          <circle cx="480" cy="100" r="28" class="pipe-node"/><text x="480" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">图谱</text>
+          <circle cx="680" cy="100" r="28" class="pipe-node"/><text x="680" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">转译</text>
+          <circle cx="760" cy="100" r="28" class="pipe-node"/><text x="760" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0f3460">导控</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-24 bg-[#fafafb] reveal">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="section-title">课题历程</h2>
+      <div class="relative">
+        <div class="timeline-line absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"></div>
+        {timelineItems.map(([year, title, desc], i) => (
+          <div class={`flex items-center mb-8 ${i%2===0?'md:flex-row':'md:flex-row-reverse'} flex-row`}>
+            <div class={`flex-1 ${i%2===0?'md:text-right md:pr-10':'md:text-left md:pl-10'} pr-6`}>
+              <div class="font-black text-2xl text-[#0f3460] mb-1">{year}</div>
+              <div class="font-bold text-lg">{title}</div>
+              <div class="text-sm text-gray-500">{desc}</div>
+            </div>
+            <div class="relative flex-shrink-0 w-4 h-4"><div class="timeline-dot relative"></div></div>
+            <div class="flex-1 hidden md:block"></div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Navigation cards -->
-  <section class="max-w-5xl mx-auto px-6 pb-24">
-    <div class="text-center mb-12" style="animation: fade-in-up 0.6s ease-out 0.5s both;">
-      <h2 class="text-3xl font-black mb-3">探索营建智慧</h2>
-      <p class="text-gray-500">从传统原型到当代转译，从文本挖掘到知识图谱</p>
-    </div>
+  <!-- Nav Cards with 3D tilt -->
+  <section class="py-24 max-w-5xl mx-auto px-6 reveal">
+    <h2 class="section-title">探索营建智慧</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {[
-        ['📖','课题简介','about','了解研究背景、目标与技术路线',0],
-        ['👥','课题组成员','team','核心研究团队介绍',0.1],
-        ['🏛️','转译案例','cases','21个经典建筑案例深度解析',0.15],
-        ['🔗','知识图谱','kg','交互式知识网络可视化平台',0.2],
-        ['🎨','传统原型','prototypes','历史建筑原型图像档案',0.25],
-        ['📚','现有成果','results','专著·论文·专利·展览·实践',0.3],
-      ].map(([icon,label,href,desc,delay]) => (
-        <a href={`${base}${href}`}
-           class="card p-7 group flex items-start gap-5 card-stagger"
-           style={`animation-delay:${0.6+delay}s`}>
+      {navCards.map(([icon,label,desc,href],i) => (
+        <a href={`${base}${href}`} class="card p-7 group flex items-start gap-5 card-3d" style={`animation: fade-in-up 0.5s ease-out ${i*0.08}s both;`}>
           <div class="text-4xl shrink-0">{icon}</div>
           <div>
-            <div class="font-bold text-xl mb-1 group-hover:text-[#0f3460] transition-colors underline-draw inline-block">{label}</div>
+            <div class="font-bold text-xl mb-1 group-hover:text-[#0f3460] transition-colors">{label}</div>
             <div class="text-sm text-gray-400 leading-relaxed">{desc}</div>
           </div>
           <div class="ml-auto self-center text-gray-300 group-hover:text-[#0f3460] group-hover:translate-x-1 transition-all duration-300">
@@ -93,12 +146,42 @@ const base = import.meta.env.BASE_URL;
         </a>
       ))}
     </div>
-    <!-- Contact card -->
-    <div class="mt-5 card p-8 text-center card-stagger" style="animation-delay:0.9s;">
-      <div class="text-3xl mb-2">📧</div>
-      <a href={`${base}contact`} class="font-bold text-xl text-[#0f3460] underline-draw inline-block">
-        联系我们 · 天津大学建筑学院
-      </a>
+  </section>
+
+  <!-- Featured cases showcase -->
+  <section class="py-24 bg-[#fafafb] reveal">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title">精选案例</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {featuredCases.map(c => (
+          <a href={`${base}cases/${c.slug}`} class="card group card-3d">
+            <img src={c.cover} alt={c.title} class="w-full h-52 object-cover" loading="lazy" />
+            <div class="p-4">
+              <div class="font-bold text-lg group-hover:text-[#0f3460] transition-colors">{c.title}</div>
+              <div class="text-sm text-gray-500 mt-1">{c.location}</div>
+              <div class="text-xs text-gray-400 mt-1">{c.architect} · {c.year}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href={`${base}cases`} class="btn-primary text-base px-8 py-3.5">
+          查看全部 20 个案例 → 
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-24 reveal">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <div class="text-4xl mb-6">📧</div>
+      <h2 class="text-3xl font-black mb-4">联系我们</h2>
+      <p class="text-gray-500 mb-8">天津大学建筑学院 · 11建筑工作室<br/>天津市南开区卫津路92号</p>
+      <a href={`${base}contact`} class="btn-primary text-base px-8 py-3.5">获取更多信息</a>
     </div>
   </section>
 </BaseLayout>
+
+<!-- Load effects -->
+<script src={`${base}scripts/effects.js`}></script>
