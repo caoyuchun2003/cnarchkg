@@ -88,7 +88,6 @@
 /* Hero background */
 .hero-bg {
   position: relative;
-  overflow: hidden;
   background: linear-gradient(160deg, #f0f4ff 0%, #e8eeff 30%, #f5f0ff 60%, #f0f4ff 100%);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
