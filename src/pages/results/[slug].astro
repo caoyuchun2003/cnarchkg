@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const entries = {
+  'venice-18': {
+    category: '展览',
+    title: '第18届威尼斯国际建筑双年展参展',
+    image: 'uploadfile/202511/2741a6bba269506.jpg',
+    intro: '展品名称：R-CELLS：面向乡村振兴的可持续太阳能建筑原型。参展人：孔宇航、杨崴。展陈设计：赵伟、韩晨阳。',
+    detail: '第18届威尼斯国际建筑双年展于2023年5月20日在意大利威尼斯开幕，其中以天津大学建筑学院孔宇航教授、杨崴教授为主导的作品——《R-CELLS：面向乡村振兴的可持续太阳能建筑》成功在中国馆的展览中亮相。展品以“天津大学联队”设计建造的建筑作品RCELLS为原型，进行了艺术化的再创作。\n\n天津大学参展作品位于“共生·未来”章节，以零碳太阳能住宅建筑——R-CELLS为原型。该建筑由天津大学建筑学院牵头、杨崴教授主导的多学科校企联合团队“天津大学联队（Team Tianjin U+）”设计建造，于2021年9月在中国北方严寒地区建造完成。R-CELLS象征着生物细胞的“自适应、自循环、自组织”特性，创造能够智慧响应环境变化的系统。它采用预制+定制的三维木结构模块体系、创新的光伏一体化技术、无障碍设计、生态景观和智能控制系统，并曾在2022年第三届中国国际太阳能十项全能竞赛中获得总冠军。',
+    gallery: [
+      'uploadfile/202511/9b8e36f18d0be.jpg', 'uploadfile/202511/150ef8110a2cca6.jpg',
+      'uploadfile/202511/282f3ff0ee883dc.jpg', 'uploadfile/202511/87e940e8a5028c7.jpg',
+      'uploadfile/202511/d2f6b94766b9919.jpg',
+    ],
+  },
+  'venice-17': { category: '展览', title: '第17届威尼斯国际建筑双年展参展', image: 'uploadfile/202511/ddad82be6b3ef2f.jpg', intro: 'YUAN OF 3——第17届威尼斯国际建筑双年展中国馆参展。设计者：孔宇航、胡一可、辛善超；参与者：天津大学建筑学院、11建筑工作室全体成员。', detail: '2021年8月24日，第17届威尼斯国际建筑双年展中国馆开幕。本届建筑双年展总主题为“我们如何共同生活”（How will we live together?），中国馆主题为“院儿——从最大到最小”。11建筑工作室主持建筑师孔宇航教授作为中国建筑师代表之一受邀参展，作品“YUAN OF 3”以故宫建福宫花园遗址为假想基地，在统一的“院落”主题下，以“微院”“家院”“社院”三种不同尺度的院落范本，回应中国未来家庭可能出现的不同生活方式。', gallery: ['uploadfile/202511/f90a18d0ba939c3.jpg', 'uploadfile/202511/a72e865cda02f7d.jpg', 'uploadfile/202511/ea96edc9fef7cfd.jpg', 'uploadfile/202511/250209242bd4.jpg', 'uploadfile/202511/e06877d0d302d75.jpg', 'uploadfile/202511/466d844b42149b3.jpg', 'uploadfile/202511/ce3db26849fcd85.jpg', 'uploadfile/202511/82b0238a19095c3.jpg', 'uploadfile/202511/f194f5f847e47a8.jpg', 'uploadfile/202511/e0375f5ad7d85f1.jpg', 'uploadfile/202511/050354d6a80787.jpg', 'uploadfile/202511/eac587fb6031e2c.jpg', 'uploadfile/202511/5c9d65b632bb831.jpg', 'uploadfile/202511/f27eec6bf2cb15d.jpg'] },
+  'shenzhen-2022': { category: '展览', title: '2022年第九届深港城市建筑双城双年展', image: 'uploadfile/202511/1177dcd01caf4b2.jpg', intro: '11建筑工作室受邀参加2022年第九届深港城市建筑双城双年展（深圳）。主题：城市生息 | Urban Cosmologies。', detail: '主展场：深圳粤海城·金啤坊（原金威啤酒厂）；地址：深圳市罗湖区东昌路9号；展览时间：2022年12月中旬至2023年2月底。分展场包括前海合作区粤港澳青年创业产业园、南头古城、国际低碳城、大浪时尚小镇、大万世居和深汕特别合作区新厝林古寨。', gallery: ['uploadfile/202511/d2132dfda38dfd3.jpg', 'uploadfile/202511/565d789526ed779.jpg', 'uploadfile/202511/041ce843bccb1f0.jpg', 'uploadfile/202511/272693a119efbb9.jpg', 'uploadfile/202511/357366601a63a14.jpg', 'uploadfile/202511/cac74bb9469bc.jpg', 'uploadfile/202511/96851f8e879f74f.jpg', 'uploadfile/202511/549134fb1f053a4.jpg', 'uploadfile/202511/6e5d83ff78635ec.jpg', 'uploadfile/202511/10370837794057a.jpg', 'uploadfile/202511/1177dcd01caf4b2.jpg'] },
+  'beijing-2021': { category: '展览', title: '2021年北京国际设计周', image: 'uploadfile/202511/204ebf004ef858c.jpg', intro: '11建筑工作室参展2021北京国际设计周“意匠营造”。', detail: '2021年10月10日，由天津大学建筑学院主办的2021北京国际设计周“意匠营造”展在北京中华世纪坛开幕。展览分为“长城研究”“传统重构”“乡村营造”“智慧建造”“教学实验”五个板块，11建筑工作室负责“传统重构”板块。孔宇航教授与团队成员汇聚中华传统建筑意象与当代精神，以“合院”与“塔”两个传统建筑经典原型为线索，从思维模式、形式生成与建造逻辑三个层面探讨其内在机制。', gallery: ['uploadfile/202511/0636f8b89d95935.jpg', 'uploadfile/202511/bf3b2c50d3ed72a.jpg', 'uploadfile/202511/b1c9fccb82d2d3.jpg', 'uploadfile/202511/7d7b30555ee4.jpg', 'uploadfile/202511/835ba5b2236ddb9.jpg', 'uploadfile/202511/6e54c8590458d47.jpg', 'uploadfile/202511/75f4ed4dad9cb.jpg', 'uploadfile/202511/fce34ef2e53e89c.jpg', 'uploadfile/202511/e44867d477c994c.jpg', 'uploadfile/202511/e89f117911c098e.jpg', 'uploadfile/202511/17d8bfc771f0595.jpg', 'uploadfile/202511/e4d85b153e126a4.jpg', 'uploadfile/202511/066dcd05f226304.jpg', 'uploadfile/202511/e9b7ab48ece2b15.jpg', 'uploadfile/202511/27b1e72dd16835a.jpg', 'uploadfile/202511/9eb4fd0d5ba4db7.jpg', 'uploadfile/202511/adcae9b9aa1ca72.jpg', 'uploadfile/202511/27a111614f931f5.jpg', 'uploadfile/202511/e57cdf566f96.jpg'] },
+  'yulin-meihualou': {
+    category: '实践',
+    title: '梦回榆林-榆林梅花楼片区集群设计',
+    image: 'uploadfile/202511/2cf95821b9fec97.jpg',
+    intro: '项目时间：2022.01-04；项目地点：陕西省榆林市。',
+    detail: '寻历史的痕迹、唤消逝的绿洲，围绕创意文化商业，联动展演体系，重塑梅花楼往日繁华，完善片区空间与功能结构，打造古城深处的“微城剧场”。',
+    gallery: [
+      'uploadfile/202511/8d8d4bf2e3b3e2c.jpg', 'uploadfile/202511/424716d8c91d84b.jpg',
+      'uploadfile/202511/8e46186b9392555.jpg', 'uploadfile/202511/39b5aa429326d08.jpg',
+      'uploadfile/202511/6432af5a0663d81.jpg', 'uploadfile/202511/39fdcd78c1a1ab5.jpg',
+      'uploadfile/202511/cc5cc13a36a4a42.jpg', 'uploadfile/202511/25bf5e32ea5637f.jpg',
+      'uploadfile/202511/e705dc6b1d3e971.jpg', 'uploadfile/202511/10040701c611870.jpg',
+    ],
+  },
+  'kunshan-lagou': { category: '实践', title: '昆山拉谷谷文化中心', image: 'uploadfile/202511/509ae1be78394f2.jpg', intro: '项目时间：2022.11—2025.12；项目地点：江苏省苏州市昆山市。', detail: '拉谷谷文化中心位于昆山市袁家甸，由水景、农田与村庄编织的江南水乡场景构成场地重要的外部自然环境。设计从理想人居、家宅记忆与合院原型中汲取江南诗意，同时展现当代生活世界的多样性与开放性，使人在建筑中与环境进行积极对话。', gallery: ['uploadfile/202511/010b0cbfb789ec4.jpg', 'uploadfile/202511/62f894aa0a49abf.jpg', 'uploadfile/202511/e30943e958831e4.jpg', 'uploadfile/202511/450be90b0ee8629.jpg', 'uploadfile/202511/ce0cfd88ccf69bd.jpg', 'uploadfile/202511/04c6caa695ac002.jpg', 'uploadfile/202511/0cc0c476a367a07.jpg', 'uploadfile/202511/9f7938b69c48247.jpg', 'uploadfile/202511/43d5c31789acd00.jpg', 'uploadfile/202511/069eb69b8403bd2.jpg'] },
+  'kaizhou-lezhi': { category: '实践', title: '“乐之庭”四川凯州新城建筑集群设计14号地块', image: 'uploadfile/202511/3984bbe58742995.jpg', intro: '项目名称：乐之庭；设计者：孔宇航、辛善超、胡一可、刘健琨、吴蔚桐、师晓龙、李政、周歆悦、张师师、兰迪、唐泽羚、姜寒、陈慧雯。', detail: '设计类别：文化商业类；项目地点：四川省德阳市凯州新城兴隆镇翠竹村11社；场地面积：11974.21m²；总建筑面积：18869.78m²；设计时间：2021.11—2022.4。以“山谷中的文化客厅”为设计理念，聚焦建筑与环境、传统与当代、空间与空间之间的联系。' },
+};
+export function getStaticPaths() {
+  return ['venice-18', 'venice-17', 'shenzhen-2022', 'beijing-2021', 'yulin-meihualou', 'kunshan-lagou', 'kaizhou-lezhi']
+    .map((slug) => ({ params: { slug } }));
+}
+const entry = entries[Astro.params.slug];
+---
+<BaseLayout title={entry.title}>
+  <article class="container-page py-20">
+    <div class="max-w-4xl mx-auto">
+      <a href={`${base}results#${entry.category === '展览' ? 'exhibitions' : 'practices'}`} class="text-sm text-gray-500 hover:text-[#0f3460] transition-colors">← 返回现有成果</a>
+      <div class="mt-10 grid md:grid-cols-[minmax(0,1fr)_280px] gap-10 items-start">
+        <div>
+          <p class="text-sm font-semibold tracking-[0.2em] text-[#0f3460] mb-4">{entry.category}</p>
+          <h1 class="text-3xl md:text-4xl font-black leading-tight">{entry.title}</h1>
+          <p class="mt-7 text-lg leading-8 text-gray-600">{entry.intro}</p>
+          <div class="mt-8 border-t border-gray-200 pt-7 text-base leading-8 text-gray-600 whitespace-pre-line">{entry.detail}</div>
+        </div>
+        <div class="card overflow-hidden"><img src={`${base}${entry.image}`} alt={entry.title} class="w-full aspect-[4/5] object-cover" /></div>
+      </div>
+      {entry.gallery && (
+        <div class="mt-14 border-t border-gray-200 pt-10">
+          <h2 class="text-xl font-black mb-6">项目图像</h2>
+          <div class="grid md:grid-cols-2 gap-5">
+            {entry.gallery.map((image) => <img src={`${base}${image}`} alt={entry.title} class="w-full h-auto rounded-2xl bg-[#f3f1ec]" loading="lazy" />)}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>

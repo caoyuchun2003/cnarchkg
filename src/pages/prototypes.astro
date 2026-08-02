@@ -13,14 +13,23 @@ const prototypes = [
   [`${base}image/ctyx_8.jpg`,'Renaissance Portrait 3'],
   [`${base}image/ctyx_9.jpg`,'Renaissance Portrait 4'],
 ];
+const widePrototypes = prototypes.filter(([src]) => src.includes('ctyx_7'));
+const galleryPrototypes = prototypes.filter(([src]) => !src.includes('ctyx_7'));
 ---
 <BaseLayout {...props}>
   <div class="container-page py-24">
     <h1 class="section-title">传统原型</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-      {prototypes.map(([src, alt]) => (
-        <div class="card">
-          <img src={src} alt={alt} class="w-full object-cover" loading="lazy" />
+    <div class="max-w-5xl mx-auto mb-6">
+      {widePrototypes.map(([src, alt]) => (
+        <div class="card overflow-hidden bg-[#f3f1ec]">
+          <img src={src} alt={alt} class="w-full h-auto block" loading="lazy" />
+        </div>
+      ))}
+    </div>
+    <div class="columns-2 md:columns-3 gap-4 max-w-5xl mx-auto">
+      {galleryPrototypes.map(([src, alt]) => (
+        <div class="card mb-4 break-inside-avoid overflow-hidden">
+          <img src={src} alt={alt} class="w-full h-auto block" loading="lazy" />
         </div>
       ))}
     </div>

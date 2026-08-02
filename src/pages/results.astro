@@ -3,60 +3,115 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '现有成果' };
 const base = import.meta.env.BASE_URL;
 const categories = [
-  ['专著', 'image/xycg-1.jpg', '查看专著成果'],
-  ['展览', 'image/xycg-3.jpg', '查看展览成果'],
-  ['论文', 'image/xycg-4.jpg', '查看论文成果'],
-  ['专利', 'image/xycg-2.jpg', '查看专利成果'],
-  ['实践', 'image/xycg-5.jpg', '查看实践成果'],
+  ['专著', 'image/xycg-1.jpg', '查看专著成果', '#books'],
+  ['展览', 'image/xycg-3.jpg', '查看展览成果', '#exhibitions'],
+  ['论文', 'image/xycg-4.jpg', '查看论文成果', '#papers'],
+  ['专利', 'image/xycg-2.jpg', '查看专利成果', '#patents'],
+  ['实践', 'image/xycg-5.jpg', '查看实践成果', '#practices'],
 ];
-const books = ['词语与建筑物：现代建筑的语汇','从衣集：历史空间与空间历史中的中国古代城市','Routledge Handbook of Chinese Architecture','丛华集：多维视角与多重价值中的中国遗产保护','建筑类型学（第三版）','河湟地区传统建筑研究','转译与重构'];
-const exhibitions = ['第18届威尼斯国际建筑双年展参展','第17届威尼斯国际建筑双年展参展','2022年第九届深港城市建筑双城双年展','2021年北京国际设计周参展'];
-const practices = ['梦回榆林-榆林梅花楼片区集群设计','昆山拉谷谷文化中心','乐之庭 四川凯州新城建筑集群设计14号地块'];
+const books = [
+  ['词语与建筑物：现代建筑的语汇', 'uploadfile/202511/a1020e09423d001.jpg'],
+  ['从衣集：历史空间与空间历史中的中国古代城市', null],
+  ['Routledge Handbook of Chinese Architecture', 'uploadfile/202511/08824238f6786ce.jpg'],
+  ['丛华集：多维视角与多重价值中的中国遗产保护', 'uploadfile/202511/b1fd90e20e68e.jpg'],
+  ['建筑类型学（第三版）', 'uploadfile/202511/3748ff3fa1aaa90.jpg'],
+  ['河湟地区传统建筑研究', 'uploadfile/202511/e0d7a1f437b458b.jpg'],
+  ['转译与重构', 'uploadfile/202511/e1e84c2b02cb1e7.jpg'],
+];
+const exhibitions = [
+  ['第18届威尼斯国际建筑双年展参展', 'uploadfile/202511/2741a6bba269506.jpg', 'venice-18'],
+  ['第17届威尼斯国际建筑双年展参展', 'uploadfile/202511/ddad82be6b3ef2f.jpg', 'venice-17'],
+  ['2022年第九届深港城市建筑双城双年展', 'uploadfile/202511/1177dcd01caf4b2.jpg', 'shenzhen-2022'],
+  ['2021年北京国际设计周', 'uploadfile/202511/204ebf004ef858c.jpg', 'beijing-2021'],
+];
+const practices = [
+  ['梦回榆林-榆林梅花楼片区集群设计', 'uploadfile/202511/2cf95821b9fec97.jpg', 'yulin-meihualou'],
+  ['昆山拉谷谷文化中心', 'uploadfile/202511/509ae1be78394f2.jpg', 'kunshan-lagou'],
+  ['“乐之庭”四川凯州新城建筑集群设计14号地块', 'uploadfile/202511/3984bbe58742995.jpg', 'kaizhou-lezhi'],
+];
 ---
 <BaseLayout {...props}>
-  <div class="container-page py-24">
-    <h1 class="section-title">现有成果</h1>
-    <div class="max-w-5xl mx-auto space-y-16">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {categories.map(([label, image, description]) => (
-          <div class="card group">
-            <img src={`${base}${image}`} alt={label} class="w-full h-32 object-cover grayscale group-hover:grayscale-0 transition-all" loading="lazy" />
-            <div class="p-4"><div class="font-bold">{label}</div><div class="text-xs text-gray-400 mt-1">{description}</div></div>
-          </div>
-        ))}
+  <div class="container-page py-20">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-14 md:flex md:items-end md:justify-between md:gap-8">
+        <div>
+          <p class="text-sm font-semibold tracking-[0.22em] text-[#0f3460] mb-4">RESEARCH OUTPUTS</p>
+          <h1 class="text-4xl md:text-5xl font-black tracking-tight text-[#1a1a2e]">现有成果</h1>
+        </div>
+        <p class="mt-5 md:mt-0 max-w-md text-sm leading-7 text-gray-500">记录课题组在专著、论文、展览、实践与专利等方向形成的阶段性成果。</p>
       </div>
-      <section>
-        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">📚 <span>专著</span></h2>
+
+      <nav aria-label="成果分类" class="grid grid-cols-2 md:grid-cols-5 gap-2 mb-20">
+        {categories.map(([label, , description, target], index) => (
+          <a href={target} class="group rounded-xl border border-gray-200 bg-white px-4 py-4 hover:border-[#0f3460] hover:shadow-sm transition-all">
+            <div class="text-xs font-semibold tracking-widest text-gray-400 group-hover:text-[#0f3460]">0{index + 1}</div>
+            <div class="mt-2 font-bold text-[#1a1a2e]">{label}</div>
+            <div class="mt-1 text-xs text-gray-400">{description.replace('查看', '')}</div>
+          </a>
+        ))}
+      </nav>
+
+      <div class="space-y-24">
+      <section id="books" class="scroll-mt-28">
+        <div class="flex items-baseline justify-between mb-6"><h2 class="text-2xl font-black flex items-center gap-3"><span class="text-[#0f3460] text-sm tracking-widest">01</span>专著</h2><span class="text-xs text-gray-400">7 项成果</span></div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {books.map(b => <div class="card p-4 text-center text-sm font-medium">{b}</div>)}
+          {books.map(([title, image]) => (
+            <div class="card overflow-hidden group">
+              <div class="aspect-[11/14] bg-[#f3f1ec]">
+                {image ? (
+                  <img src={`${base}${image}`} alt={title} class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform" loading="lazy" />
+                ) : (
+                  <div class="h-full flex items-center justify-center p-6 text-center text-sm text-gray-500">线上封面暂不可用</div>
+                )}
+              </div>
+              <div class="p-4 text-center text-sm font-medium">{title}</div>
+            </div>
+          ))}
         </div>
       </section>
-      <section>
-        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">📄 <span>论文</span></h2>
-        <p class="text-gray-500 mb-4">已发表核心期刊论文 100 余篇。</p>
-        <a href={`${base}papers`} class="btn-primary">查看完整列表 →</a>
-      </section>
-      <section>
-        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">🎯 <span>展览</span></h2>
-        <div class="grid md:grid-cols-2 gap-3">
-          {exhibitions.map(e => <div class="card p-4 text-sm">{e}</div>)}
+      <section id="papers" class="scroll-mt-28">
+        <div class="flex items-baseline justify-between mb-6"><h2 class="text-2xl font-black flex items-center gap-3"><span class="text-[#0f3460] text-sm tracking-widest">02</span>论文</h2><span class="text-xs text-gray-400">学术发表</span></div>
+        <div class="card p-7 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-7 bg-[#f7f9fc]">
+          <div>
+            <div class="text-5xl font-black tracking-tight text-[#0f3460]">58</div>
+            <p class="mt-2 text-gray-500">当前收录学术论文</p>
+            <p class="mt-1 text-sm text-gray-400">覆盖建筑、城市与环境营建研究方向</p>
+          </div>
+          <a href={`${base}papers`} class="btn-primary self-start md:self-auto">查看完整列表 <span aria-hidden="true">→</span></a>
         </div>
       </section>
-      <section>
-        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">🏗️ <span>实践</span></h2>
-        <div class="grid md:grid-cols-3 gap-3">
-          {practices.map(p => <div class="card p-4 text-sm">{p}</div>)}
+      <section id="exhibitions" class="scroll-mt-28">
+        <div class="flex items-baseline justify-between mb-6"><h2 class="text-2xl font-black flex items-center gap-3"><span class="text-[#0f3460] text-sm tracking-widest">03</span>展览</h2><span class="text-xs text-gray-400">4 项成果</span></div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          {exhibitions.map(([title, image, slug]) => (
+            <a href={`${base}results/${slug}`} class="card overflow-hidden group">
+              <div class="aspect-[16/9] bg-[#f3f1ec]"><img src={`${base}${image}`} alt={title} class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform" loading="lazy" /></div>
+              <div class="p-5"><h3 class="text-sm font-bold leading-6">{title}</h3><p class="mt-2 text-xs text-gray-400">展览成果 · 查看详情 →</p></div>
+            </a>
+          ))}
         </div>
       </section>
-      <section>
-        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">💡 <span>专利</span></h2>
+      <section id="practices" class="scroll-mt-28">
+        <div class="flex items-baseline justify-between mb-6"><h2 class="text-2xl font-black flex items-center gap-3"><span class="text-[#0f3460] text-sm tracking-widest">04</span>实践</h2><span class="text-xs text-gray-400">3 项成果</span></div>
+        <div class="grid md:grid-cols-3 gap-5">
+          {practices.map(([title, image, slug]) => (
+            <a href={`${base}results/${slug}`} class="card overflow-hidden group">
+              <div class="aspect-[4/3] bg-[#f3f1ec]"><img src={`${base}${image}`} alt={title} class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform" loading="lazy" /></div>
+              <div class="p-5"><h3 class="text-sm font-bold leading-6">{title}</h3><p class="mt-2 text-xs text-gray-400">实践项目 · 查看详情 →</p></div>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section id="patents" class="scroll-mt-28">
+        <div class="flex items-baseline justify-between mb-6"><h2 class="text-2xl font-black flex items-center gap-3"><span class="text-[#0f3460] text-sm tracking-widest">05</span>专利</h2><span class="text-xs text-gray-400">4 项成果</span></div>
         <div class="card p-6 space-y-3 text-sm text-gray-600">
-          <p><strong>发明专利：</strong>一种生成合院式建筑单体形态的三维建模方法及系统</p>
-          <p><strong>实用新型：</strong>一种建筑动态表皮用光伏组件联动装置</p>
-          <p><strong>外观专利：</strong>盲道用引导标识 (2023303851424)</p>
-          <p><strong>外观专利：</strong>光伏窗 (CN201930724397.2)</p>
+          <p><strong>发明专利：</strong>孔宇航、郭喆、舒琨狄、胡一可、王安琪、陈心怡。一种生成合院式建筑单体形态的三维建模方法及系统。2024101067479，2024-01-25。</p>
+          <p><strong>实用新型：</strong>汪丽君、史学鹏、吴琼、张文。一种建筑动态表皮用光伏组件联动装置。CN201922348968.4，2019-12-24。</p>
+          <p><strong>外观专利：</strong>殷彪、汪丽君、徐媛、马珺禹、牛一凡、杨楷文、庄鸿庆、万硕、曹兰玉。盲道用引导标识（人因交互）。2023303851424，2023-06-21。</p>
+          <p><strong>外观专利：</strong>汪丽君、史学鹏、吴琼、张文。光伏窗。CN201930724397.2，2019-12-24。</p>
         </div>
       </section>
+      </div>
     </div>
   </div>
 </BaseLayout>
