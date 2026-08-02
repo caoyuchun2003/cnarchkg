@@ -1,44 +1,141 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { cases } from '../data/cases.js';
 const props = { title: '转译案例' };
 const base = import.meta.env.BASE_URL;
-const cases = [
-  { slug: 'xicun', title: '西村·贝森大院', year: '2012', location: '四川·成都', architect: '刘家琨', cover: `${base}uploadfile/202510/7066a36637ccba5.jpg` },
-  { slug: 'jishou', title: '吉首美术馆', year: '2019', location: '湖南·吉首', architect: '张永和', cover: `${base}uploadfile/202508/cd1d797821bf190.jpg` },
-  { slug: 'chunyuan', title: '春园', year: '2018', location: '江苏·宜兴', architect: '葛明', cover: `${base}uploadfile/202508/bedf65a02143d5.jpg` },
-  { slug: 'xixi', title: '习习山庄', year: '1982', location: '浙江·建德', architect: '葛如亮', cover: `${base}uploadfile/202509/672dde58b07885b.png` },
-  { slug: 'xiangshan', title: '香山饭店', year: '1982', location: '北京', architect: '贝聿铭', cover: `${base}uploadfile/202509/5be05375f87a3e6.jpg` },
-  { slug: 'wangxuezhong', title: '王学仲艺术研究所', year: '1988', location: '天津', architect: '彭一刚', cover: `${base}uploadfile/202509/af1a252bd9355a1.png` },
-  { slug: 'jixi', title: '绩溪博物馆', year: '2013', location: '安徽·绩溪', architect: '李兴钢', cover: `${base}uploadfile/202509/be8af7441f15b6d.jpg` },
-  { slug: 'datang', title: '大唐西市博物馆', year: '2007', location: '陕西·西安', architect: '刘克成', cover: `${base}uploadfile/202509/8cc3c090ec3b0b1.jpg` },
-  { slug: 'wuyi', title: '武夷山庄', year: '1983', location: '福建·武夷山', architect: '齐康', cover: `${base}uploadfile/202509/19af403901bfe0a.jpg` },
-  { slug: 'baiyun', title: '白云山庄旅社', year: '1965', location: '广东·广州', architect: '莫伯治', cover: `${base}uploadfile/202509/5883ceec29f9b91.jpg` },
-  { slug: 'donghai', title: '东海大学女白宫', year: '1962', location: '台湾·台中', architect: '陈其宽', cover: `${base}uploadfile/202509/e062e158acca226.jpg` },
-  { slug: 'jingdezhen', title: '景德镇川上行', year: '2023', location: '江西·景德镇', architect: '董功', cover: `${base}uploadfile/202509/f443d07d972146.jpg` },
-  { slug: 'jinshanling', title: '金山岭上院', year: '2022', location: '河北·承德', architect: '柳亦春', cover: `${base}uploadfile/202509/75d03313adbcb.jpg` },
-  { slug: 'anyang', title: '安阳殷墟博物馆', year: '2005', location: '河南·安阳', architect: '崔愷', cover: `${base}uploadfile/202509/368160eaca9daab.jpg` },
-  { slug: 'xizang', title: '西藏非物质文化遗产博物馆', year: '2018', location: '西藏·拉萨', architect: '肖诚', cover: `${base}uploadfile/202509/f5fa2b0d00b3383.png` },
-  { slug: 'fengdazhong', title: '冯大中艺术中心', year: '2010', location: '辽宁·本溪', architect: '陶磊', cover: `${base}uploadfile/202509/69107dce77b2627.jpg` },
-  { slug: 'miaolu', title: '淼庐', year: '2019', location: '云南·丽江', architect: '李晓东', cover: `${base}uploadfile/202509/0e617dd495b919d.jpg` },
-  { slug: 'hangzhou', title: '杭州国家版本馆', year: '2022', location: '浙江·杭州', architect: '王澍', cover: `${base}uploadfile/202509/086b5382a4eec13.png` },
-  { slug: 'hongzhuan', title: '北京红砖美术馆', year: '2014', location: '北京', architect: '董豫赣', cover: `${base}uploadfile/202509/1666a584d3c99.jpg` },
-  { slug: 'qufu', title: '曲阜阙里宾舍', year: '1985', location: '山东·曲阜', architect: '戴念慈', cover: `${base}uploadfile/202508/abe912377144d72.png` },
-];
 ---
 <BaseLayout {...props}>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <div class="max-w-7xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-12 text-center">转译案例</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {cases.map(c => (
-        <a href={`${base}cases/${c.slug}`} class="group border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-          <img src={c.cover} alt={c.title} class="w-full h-48 object-cover" loading="lazy" />
-          <div class="p-4">
-            <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors">{c.title}</h3>
-            <p class="text-sm text-gray-500 mt-1">{c.location}</p>
-            <p class="text-xs text-gray-400 mt-1">{c.architect} · {c.year}</p>
-          </div>
-        </a>
-      ))}
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-8">
+      <div>
+        <p class="text-sm font-semibold text-[#0f3460] mb-2">TRANSLATION CASES</p>
+        <h1 class="text-3xl md:text-4xl font-black">转译案例</h1>
+        <p class="text-sm text-gray-400 mt-2">20 个精选建筑案例 · 地图探索与资料列表</p>
+      </div>
+      <div class="flex gap-2 rounded-xl bg-gray-100 p-1 self-start lg:self-auto">
+        <button id="map-mode" class="mode-button active">地图模式</button>
+        <button id="list-mode" class="mode-button">列表模式</button>
+      </div>
+    </div>
+
+    <div id="map-view" class="relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+      <div id="case-map" class="h-[68vh] min-h-[520px] bg-[#e8edf2]" data-base={base} data-cases={JSON.stringify(cases)}></div>
+      <div id="map-panel" class="absolute left-5 top-5 z-[500] hidden w-[min(360px,calc(100%-2.5rem))] rounded-2xl bg-[#0f3460]/95 p-5 text-white shadow-2xl backdrop-blur">
+        <button id="map-panel-close" class="absolute right-3 top-3 text-white/60 hover:text-white" aria-label="关闭">×</button>
+        <img id="panel-image" class="mb-4 aspect-video w-full rounded-xl object-cover" alt="" />
+        <p id="panel-number" class="text-xs text-white/60"></p>
+        <h2 id="panel-title" class="mt-1 text-2xl font-black"></h2>
+        <p id="panel-meta" class="mt-2 text-sm text-white/75"></p>
+        <a id="panel-link" class="mt-5 inline-flex rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#0f3460] hover:bg-blue-50">查看案例详情 →</a>
+      </div>
+      <div class="absolute bottom-4 left-4 z-[400] rounded-lg bg-white/90 px-3 py-2 text-xs text-gray-500 shadow-sm">点击标记查看案例 · © OpenStreetMap contributors</div>
+    </div>
+
+    <div id="list-view" class="hidden">
+      <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <p class="text-sm text-gray-400">共 {cases.length} 个精选建筑案例</p>
+        <label class="relative w-full md:w-80">
+          <span class="sr-only">搜索案例</span>
+          <input id="case-search" type="search" placeholder="搜索案例、地点或建筑师" class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-[#0f3460]" />
+        </label>
+      </div>
+      <div id="case-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {cases.map(c => (
+          <a data-case-card data-search={`${c.title} ${c.location} ${c.architect}`} href={`${base}cases/${c.slug}`} class="group border rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white">
+            <img src={c.cover.startsWith('http') ? c.cover : `${base}${c.cover}`} alt={c.title} class="w-full h-48 object-cover" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors">{c.title}</h3>
+              <p class="text-sm text-gray-500 mt-1">{c.location}</p>
+              <p class="text-xs text-gray-400 mt-1">{c.architect} · {c.year}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <nav id="case-pagination" class="flex flex-wrap items-center justify-center gap-2 mt-12" aria-label="案例分页"></nav>
     </div>
   </div>
+
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script is:inline>
+    const mapView = document.getElementById('map-view');
+    const listView = document.getElementById('list-view');
+    const mapMode = document.getElementById('map-mode');
+    const listMode = document.getElementById('list-mode');
+    const mapEl = document.getElementById('case-map');
+    const mapCases = JSON.parse(mapEl.dataset.cases);
+    const base = mapEl.dataset.base;
+
+    function setMode(mode) {
+      const isMap = mode === 'map';
+      mapView.classList.toggle('hidden', !isMap);
+      listView.classList.toggle('hidden', isMap);
+      mapMode.classList.toggle('active', isMap);
+      listMode.classList.toggle('active', !isMap);
+      if (isMap && window.caseMap) setTimeout(() => window.caseMap.invalidateSize(), 100);
+    }
+    mapMode.addEventListener('click', () => setMode('map'));
+    listMode.addEventListener('click', () => setMode('list'));
+
+    if (window.L) {
+      const bd09ToGcj02 = ([bdLng, bdLat]) => {
+        const x = bdLng - 0.0065;
+        const y = bdLat - 0.006;
+        const z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * Math.PI);
+        const theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * Math.PI);
+        return [z * Math.cos(theta), z * Math.sin(theta)];
+      };
+      const gcj02ToWgs84 = ([lng, lat]) => {
+        const a = 6378245.0;
+        const ee = 0.00669342162296594323;
+        const transformLat = (x, y) => -100 + 2*x + 3*y + 0.2*y*y + 0.1*x*y + 0.2*Math.sqrt(Math.abs(x)) + (20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3 + (20*Math.sin(y*Math.PI)+40*Math.sin(y/3*Math.PI))*2/3 + (160*Math.sin(y/12*Math.PI)+320*Math.sin(y*Math.PI/30))*2/3;
+        const transformLng = (x, y) => 300 + x + 2*y + 0.1*x*x + 0.1*x*y + 0.1*Math.sqrt(Math.abs(x)) + (20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3 + (20*Math.sin(x*Math.PI)+40*Math.sin(x/3*Math.PI))*2/3 + (150*Math.sin(x/12*Math.PI)+300*Math.sin(x/30*Math.PI))*2/3;
+        const dLat = transformLat(lng - 105, lat - 35); const dLng = transformLng(lng - 105, lat - 35);
+        const radLat = lat / 180 * Math.PI; const magic = 1 - ee * Math.sin(radLat) * Math.sin(radLat); const sqrtMagic = Math.sqrt(magic);
+        return [lng - (dLng * 180 / (a / sqrtMagic * Math.cos(radLat)) * Math.PI / 180), lat - (dLat * 180 / (a * (1 - ee) / (magic * sqrtMagic)) * Math.PI / 180)];
+      };
+
+      const map = L.map(mapEl, { scrollWheelZoom: false });
+      window.caseMap = map;
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+      const bounds = [];
+      const panel = document.getElementById('map-panel');
+      const showPanel = c => {
+        document.getElementById('panel-image').src = c.cover.startsWith('http') ? c.cover : `${base}${c.cover}`;
+        document.getElementById('panel-image').alt = c.title;
+        document.getElementById('panel-number').textContent = `案例 ${mapCases.indexOf(c) + 1} / ${mapCases.length}`;
+        document.getElementById('panel-title').textContent = c.title;
+        document.getElementById('panel-meta').textContent = `${c.location} · ${c.architect} · ${c.year}`;
+        document.getElementById('panel-link').href = `${base}cases/${c.slug}`;
+        panel.classList.remove('hidden');
+      };
+      mapCases.forEach(c => {
+        const [lng, lat] = gcj02ToWgs84(bd09ToGcj02(c.position));
+        const point = [lat, lng]; bounds.push(point);
+        L.marker(point).addTo(map).on('click', () => showPanel(c));
+      });
+      map.fitBounds(bounds, { padding: [30, 30] });
+      document.getElementById('map-panel-close').addEventListener('click', () => panel.classList.add('hidden'));
+    } else {
+      mapEl.innerHTML = '<div class="flex h-full items-center justify-center p-8 text-center text-gray-500">地图组件加载失败，请切换到列表模式查看案例。</div>';
+    }
+
+    const input = document.getElementById('case-search');
+    const cards = Array.from(document.querySelectorAll('[data-case-card]'));
+    const pagination = document.getElementById('case-pagination');
+    const pageSize = 10;
+    let currentPage = 1;
+    function getFilteredCards() { const query = input.value.trim().toLowerCase(); return cards.filter(card => card.dataset.search.toLowerCase().includes(query)); }
+    function renderPagination(totalPages) {
+      pagination.innerHTML = '';
+      if (totalPages <= 1) return;
+      const button = (label, page, disabled = false, active = false) => { const el = document.createElement('button'); el.type='button'; el.textContent=label; el.disabled=disabled; el.className=`min-w-9 h-9 px-3 rounded-lg text-sm ${active?'bg-[#0f3460] text-white':'bg-white border border-gray-200 text-gray-600 hover:border-[#0f3460]'} ${disabled?'opacity-40':''}`; el.onclick=()=>{currentPage=page;render();}; pagination.appendChild(el); };
+      button('上一页', currentPage - 1, currentPage === 1);
+      for (let page=1; page<=totalPages; page++) if (page===1 || page===totalPages || Math.abs(page-currentPage)<=1) button(String(page), page, false, page===currentPage);
+      button('下一页', currentPage + 1, currentPage === totalPages);
+    }
+    function render() { const filtered=getFilteredCards(); const total=Math.max(1,Math.ceil(filtered.length/pageSize)); currentPage=Math.min(currentPage,total); cards.forEach(c=>c.classList.add('hidden')); filtered.slice((currentPage-1)*pageSize,currentPage*pageSize).forEach(c=>c.classList.remove('hidden')); renderPagination(total); }
+    input?.addEventListener('input', () => { currentPage=1; render(); });
+    render();
+  </script>
 </BaseLayout>

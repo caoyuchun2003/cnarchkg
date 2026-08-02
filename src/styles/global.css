@@ -29,6 +29,7 @@
   .article { @apply max-w-3xl mx-auto px-6 py-16; }
   .article h1 { @apply text-3xl font-black mb-4; }
   .article p { @apply text-lg leading-relaxed text-gray-600 mb-6; }
+  .article img { @apply w-full h-auto rounded-xl my-6; }
 }
 
 /* ========== Animations ========== */

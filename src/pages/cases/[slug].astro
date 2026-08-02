@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { cases as caseRecords } from '../../data/cases.js';
+import { caseDetails } from '../../data/case-details.js';
 export function getStaticPaths() {
-  const slugs = ['xicun','jishou','chunyuan','xixi','xiangshan','wangxuezhong','jixi','datang','wuyi','baiyun','donghai','jingdezhen','jinshanling','anyang','xizang','fengdazhong','miaolu','hangzhou','hongzhuan','qufu'];
-  return slugs.map(slug => ({ params: { slug } }));
+  return caseRecords.map(c => ({ params: { slug: c.slug } }));
 }
 const { slug } = Astro.params;
 const props = { title: '案例详情' };
 const base = import.meta.env.BASE_URL;
-const cases = {
+const details = {
   xicun: { title:'西村·贝森大院', year:'2012', location:'四川·成都', architect:'刘家琨', cover:`${base}uploadfile/202510/7066a36637ccba5.jpg`,
     content:`西村大院的设计——反中心体量集合的城市综合体常见模式，采用外环内空的布局，环绕街区沿边修建，围合出一个公园般的超大院落。大、中、小竹林院落层层相套，面向公众开放，自由穿行，再现传统生活环境，激发集体记忆，延续了本地人民热爱的竹下休闲传统生活方式。功能设施式的骨架设计，任由富于个性的世俗生活自由填充，又被大院的巨大尺度所归纳，最终形成"市井立面"，传达出群体创造的丰富表现力。一条架空休闲跑道巡遊大院并攀升至屋顶又环绕一周，为跑步和骑车人们带来了自由兴奋的超常体验，并赋予建筑具有动态能量的鲜活形象。`
   },
@@ -18,7 +19,9 @@ const cases = {
     content:`春园用地窄而长，采用"半园半房"这一"型"——以房中有园、园中含房的方式回应场地。以4个坡顶不断起落构成一组复坡，各个坡顶彼此交叠形成一系列或高或低的覆盖和覆盖之中的留白，形成了场地上的特殊而细致的架构。春园里采用了特定的坡法以形成分节，通过4个坡顶互相连接、盖水土，而那些在上部的连接则隐藏于阴影之中。为了实现分节和连续，还需要真实建构和形式建构的配合，各个坡顶各有其空间特征。`
   }
 };
-const data = cases[slug] || { title: slug, year:'', location:'', architect:'', cover:'' };
+const record = caseRecords.find(c => c.slug === slug);
+const data = details[slug] || (record ? { ...record, cover: `${base}${record.cover}` } : { title: slug, year:'', location:'', architect:'', cover:'' });
+const remoteDetail = caseDetails[slug];
 ---
 <BaseLayout {...props}>
   <div class="max-w-4xl mx-auto px-6 py-24">
@@ -33,7 +36,9 @@ const data = cases[slug] || { title: slug, year:'', location:'', architect:'', c
       {data.year && <span class="tag bg-gray-50 text-gray-600">{data.year}年</span>}
       {data.location && <span class="tag bg-gray-50 text-gray-600">{data.location}</span>}
     </div>
-    {data.content ? (
+    {remoteDetail?.contentHtml ? (
+      <div class="article text-lg leading-relaxed text-gray-600" set:html={remoteDetail.contentHtml}></div>
+    ) : data.content ? (
       <div class="article text-lg leading-relaxed text-gray-600 space-y-4">
         {data.content.split('\n').map(p => <p>{p}</p>)}
       </div>

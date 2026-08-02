@@ -2,6 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const props = { title: '现有成果' };
 const base = import.meta.env.BASE_URL;
+const categories = [
+  ['专著', 'image/xycg-1.jpg', '查看专著成果'],
+  ['展览', 'image/xycg-3.jpg', '查看展览成果'],
+  ['论文', 'image/xycg-4.jpg', '查看论文成果'],
+  ['专利', 'image/xycg-2.jpg', '查看专利成果'],
+  ['实践', 'image/xycg-5.jpg', '查看实践成果'],
+];
 const books = ['词语与建筑物：现代建筑的语汇','从衣集：历史空间与空间历史中的中国古代城市','Routledge Handbook of Chinese Architecture','丛华集：多维视角与多重价值中的中国遗产保护','建筑类型学（第三版）','河湟地区传统建筑研究','转译与重构'];
 const exhibitions = ['第18届威尼斯国际建筑双年展参展','第17届威尼斯国际建筑双年展参展','2022年第九届深港城市建筑双城双年展','2021年北京国际设计周参展'];
 const practices = ['梦回榆林-榆林梅花楼片区集群设计','昆山拉谷谷文化中心','乐之庭 四川凯州新城建筑集群设计14号地块'];
@@ -9,7 +16,15 @@ const practices = ['梦回榆林-榆林梅花楼片区集群设计','昆山拉�
 <BaseLayout {...props}>
   <div class="container-page py-24">
     <h1 class="section-title">现有成果</h1>
-    <div class="max-w-4xl mx-auto space-y-16">
+    <div class="max-w-5xl mx-auto space-y-16">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {categories.map(([label, image, description]) => (
+          <div class="card group">
+            <img src={`${base}${image}`} alt={label} class="w-full h-32 object-cover grayscale group-hover:grayscale-0 transition-all" loading="lazy" />
+            <div class="p-4"><div class="font-bold">{label}</div><div class="text-xs text-gray-400 mt-1">{description}</div></div>
+          </div>
+        ))}
+      </div>
       <section>
         <h2 class="text-2xl font-black mb-6 flex items-center gap-3">📚 <span>专著</span></h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
